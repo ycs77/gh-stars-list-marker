@@ -139,6 +139,12 @@ async function fetchStarredRepos() {
     return
   }
 
+  // 嘗試更新 rate limit
+  if (rateLimit.remaining <= 0) {
+    await updateRateLImit()
+  }
+
+  // 然後再次檢查 rate limit
   if (rateLimit.remaining <= 0) {
     alert(`Rate limit exceeded. Please wait ${rateLimit.resetMinutes} minutes before trying again.`)
     return
