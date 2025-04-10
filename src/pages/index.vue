@@ -48,7 +48,7 @@
                 Fetch
               </button>
 
-              <button type="button" class="shrink-0 bg-purple-500 enabled:hover:bg-purple-600 disabled:bg-purple-300 text-white text-sm px-4 py-2 rounded-sm" :disabled="isLoading" @click="openALlLinks">
+              <button type="button" class="shrink-0 bg-purple-500 enabled:hover:bg-purple-600 disabled:bg-purple-300 text-white text-sm px-4 py-2 rounded-sm" :disabled="isLoading" @click="openAllLinks">
                 Open All Links
               </button>
 
@@ -141,7 +141,7 @@ async function fetchStarredRepos() {
 
   // 嘗試更新 rate limit
   if (rateLimit.remaining <= 0) {
-    await updateRateLImit()
+    await updateRateLimit()
   }
 
   // 然後再次檢查 rate limit
@@ -169,7 +169,7 @@ async function fetchStarredRepos() {
 
   isLoading.value = false
 
-  await updateRateLImit()
+  await updateRateLimit()
 }
 
 function mark(index: number) {
@@ -213,13 +213,13 @@ function next() {
   }
 }
 
-function openALlLinks() {
+function openAllLinks() {
   starredRepos.value.forEach(repo => {
     window.open(`https://github.com/${repo.name}`, '_blank')
   })
 }
 
-async function updateRateLImit() {
+async function updateRateLimit() {
   const res = await fetch('https://api.github.com/rate_limit')
   if (res.ok) {
     const data = await res.json()
@@ -232,6 +232,6 @@ async function updateRateLImit() {
 }
 
 onMounted(async () => {
-  await updateRateLImit()
+  await updateRateLimit()
 })
 </script>
