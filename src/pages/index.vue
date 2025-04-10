@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container mx-auto px-4 py-8">
+    <div class="max-w-5xl mx-auto px-4 py-8">
       <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold">GitHub Stars List Marker</h1>
 
